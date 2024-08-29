@@ -1,5 +1,5 @@
 <div class="md:p-6 relative" wire:keydown.window='teclaPresionada($event.key)'>
-    <h2 class="text-4xl text-center font-black mb-2">Productos</h2>
+    <h2 class="text-4xl text-center font-black text-gray-600  mb-2">Productos</h2>
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-md">
         <div class="flex flex-col md:flex-row my-2">
             <x-secondary-button wire:click.prevent="abrirModalAgregar"
@@ -58,9 +58,11 @@
                             <tr class="productoId hover:cursor-pointer text-center transition-all hover:bg-indigo-100 {{ $producto->stock < 10 ? 'bg-red-400' : '' }}"
                                 wire:key='{{ $producto->id }}'>
                                 <td class="border px-4 uppercase">{{ $producto->codigo }}</td>
-                                <td class="border px-4"><img
+                                <td class="border px-4">
+                                    <img loading="lazy"
                                         src="{{ asset('storage/uploads/imagenes_productos/' . $producto->imagen) }}"
-                                        alt="Imagen del usuario" class="object-cover my-2 w-16 mx-auto" /></td>
+                                        alt="Imagen del usuario" class="object-cover my-2 w-16 mx-auto" />
+                                </td>
                                 <td class="border px-4 capitalize">{{ $producto->nombre }}</td>
                                 <td class="border px-4">$ {{ $this->formatearDinero($producto->precio) }}</td>
                                 <td class="border px-4">
@@ -96,33 +98,35 @@
 
         <!-- Modal para agregar o editar producto -->
         @if ($modalAgregar || $modalEditar)
-            <div wire:transition.opacity.duration.400ms
-                class="transition-all ease-in-out delay-100 fixed bg-[rgba(0,0,0,0.5)] backdrop top-0 left-0 w-full p-2 z-50 h-screen overflow-y-scroll">
+            <div class="fixed bg-[rgba(0,0,0,0.5)] backdrop top-0 left-0 w-full p-2 z-50 h-screen overflow-y-scroll" wire:click.self="{{ $modalAgregar ? 'cerrarModalAgregar' : 'cerrarModalEditar' }}">
                 <div class="flex items-center justify-center min-h-screen">
-                    <div class="transition-all ease-in-out delay-200 bg-white p-4 rounded-sm w-full max-w-2xl">
+                    <div class="bg-white p-4 rounded-sm w-full max-w-2xl">
                         <!-- Contenido del modal para agregar producto -->
                         <form wire:submit.prevent="{{ $modalAgregar ? 'crearProducto' : 'actualizarProducto' }}"
                             enctype="multipart/form-data">
-                            <legend class="text-2xl text-center text-gray-600 font-black mb-2">{{ $modalAgregar ? 'Agregar Producto' : 'Actualizar Producto' }}</legend>
+                            <legend class="text-2xl text-center text-gray-600 font-black mb-2">
+                                {{ $modalAgregar ? 'Agregar Producto' : 'Actualizar Producto' }}</legend>
                             <div class="grid grid-cols-2 gap-2">
 
                                 <div class="mb-2">
                                     @if ($modalAgregar)
                                         @if ($imagen)
-                                            <img src="{{ $imagen->temporaryUrl() }}" alt="Imagen previa"
+                                            <img loading="lazy" src="{{ $imagen->temporaryUrl() }}" alt="Imagen previa"
                                                 class="object-cover mb-2 w-24" />
                                         @endif
-                                        <x-input-label class="hidden" class="text-white" for="imagen" :value="__('Imagen')" />
+                                        <x-input-label class="hidden" class="text-white" for="imagen"
+                                            :value="__('Imagen')" />
                                         <x-text-input wire:model="imagen" id="imagen"
                                             class="border-none text-xs p-0 block mt-1 w-full capitalize text-white"
                                             type="file" name="imagen" accept="image/*" />
                                         <x-input-error :messages="$errors->get('imagen')" class="mt-2" />
                                     @else
                                         @if ($imagen)
-                                            <img src="{{ asset('storage/uploads/imagenes_productos/' . $imagen) }}"
+                                            <img loading="lazy" src="{{ asset('storage/uploads/imagenes_productos/' . $imagen) }}"
                                                 alt="Imagen previa" class="object-cover mb-2 w-24" />
                                         @endif
-                                        <x-input-label class="hidden" class="text-white" for="imagen" :value="__('Imagen')" />
+                                        <x-input-label class="hidden" class="text-white" for="imagen"
+                                            :value="__('Imagen')" />
                                         <x-text-input placeholder="" wire:model="imagen_nueva" id="imagen_nueva"
                                             class="border-none text-xs p-0 block mt-1 w-full capitalize text-white"
                                             type="file" name="imagen" accept="image/*" />
@@ -150,14 +154,16 @@
                                 </div>
                                 <div class="mb-2">
                                     <x-input-label class="hidden" for="precio" :value="__('Precio')" />
-                                    <x-text-input placeholder="Precio" wire:model="precio" id="precio" class="block mt-1 w-full"
-                                        type="text" name="precio" autocomplete="precio" />
+                                    <x-text-input placeholder="Precio" wire:model.live="precio" id="precio"
+                                        class="block mt-1 w-full" type="text" name="precio" 
+                                        autocomplete="precio" />
                                     <x-input-error :messages="$errors->get('precio')" class="mt-2" />
                                 </div>
                                 <div class="mb-2">
                                     <x-input-label class="hidden" for="stock" :value="__('Cantidad')" />
-                                    <x-text-input placeholder="Cantidad" wire:model="stock" id="stock" class="block mt-1 w-full"
-                                        type="text" name="stock" autocomplete="stock" />
+                                    <x-text-input placeholder="Cantidad" wire:model="stock" id="stock"
+                                        class="block mt-1 w-full" type="text" name="stock"
+                                        autocomplete="stock" />
                                     <x-input-error :messages="$errors->get('stock')" class="mt-2" />
                                 </div>
                                 <div class="mb-2">
@@ -184,15 +190,16 @@
                                 </div>
                                 <div class="mb-2">
                                     <x-input-label class="hidden" for="impuesto" :value="__('Impuesto')" />
-                                    <x-text-input placeholder="Impuesto" wire:model="impuesto" id="impuesto" class="block mt-1 w-full"
-                                        type="text" name="impuesto" autocomplete="impuesto" value="$impuesto" />
+                                    <x-text-input placeholder="Impuesto" wire:model="impuesto" id="impuesto"
+                                        class="block mt-1 w-full" type="text" name="impuesto"
+                                        autocomplete="impuesto" value="$impuesto" />
                                     <x-input-error :messages="$errors->get('impuesto')" class="mt-2" />
                                 </div>
                                 <div class="mb-2">
                                     <x-input-label class="hidden" for="unidad_medida" :value="__('Unidad Medida')" />
-                                    <x-text-input placeholder="Unidad de medida" wire:model="unidad_medida" id="unidad_medida"
-                                        class="block mt-1 w-full capitalize text-gray-600" type="text" name="unidad_medida"
-                                        autocomplete="unidad_medida" />
+                                    <x-text-input placeholder="Unidad de medida" wire:model="unidad_medida"
+                                        id="unidad_medida" class="block mt-1 w-full capitalize text-gray-600"
+                                        type="text" name="unidad_medida" autocomplete="unidad_medida" />
                                     <x-input-error :messages="$errors->get('unidad_medida')" class="mt-2" />
                                 </div>
                                 <div class="mb-2">

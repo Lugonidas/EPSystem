@@ -1,5 +1,5 @@
 <div class="md:p-6 relative" wire:keydown.window='teclaPresionada($event.key)'>
-    <h2 class="text-4xl text-center font-black mb-2">Empleados</h2>
+    <h2 class="text-4xl text-center font-black mb-2 text-gray-600 ">Empleados</h2>
 
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-md">
         <div class="flex flex-col md:flex-row my-2">
@@ -44,17 +44,19 @@
                                 wire:key='{{ $usuario->id }}'>
                                 <td class="border px-4 capitalize">{{ $usuario->name }}</td>
                                 <td class="border px-4">
-                                    <img src="{{ asset('storage/uploads/imagenes_usuarios/' . $usuario->imagen) }}"
+                                    <img loading="lazy" src="{{ asset('storage/uploads/imagenes_usuarios/' . $usuario->imagen) }}"
                                         alt="Imagen del usuario"
                                         class="object-cover my-2 w-16 h-16 rounded-full mx-auto" />
                                 </td>
                                 <td class="border px-4 capitalize">{{ $usuario->usuario }}</td>
-                                
+
                                 <td class="border px-4 capitalize">{{ $usuario->rol === 1 ? 'Admin' : 'Cajero' }}</td>
                                 <td class="border px-4">
-                                    <button wire:click.prevent="cambiarEstado({{ $usuario->id }})" class="focus:outline-none text-2xl"
+                                    <button wire:click.prevent="cambiarEstado({{ $usuario->id }})"
+                                        class="focus:outline-none text-2xl"
                                         title="{{ $usuario->estado === 1 ? 'Desactivar' : 'Activar' }}">
-                                        <i class="fa-solid {{ $usuario->estado === 1 ? 'fa-check text-green-500' : 'fa-xmark text-red-500' }}"></i>
+                                        <i
+                                            class="fa-solid {{ $usuario->estado === 1 ? 'fa-check text-green-500' : 'fa-xmark text-red-500' }}"></i>
                                     </button>
                                 </td>
                                 <td class="border px-4">
@@ -84,29 +86,29 @@
         <div wire:transition.opacity.duration.100ms
             class="transition-all ease-in fixed bg-[rgba(0,0,0,0.5)] backdrop-blur top-0 left-0 w-full p-2 z-50 h-screen overflow-y-scroll">
             <div class="flex items-center justify-center min-h-screen">
-                <div class="bg-gray-950 p-4 rounded-lg w-full max-w-2xl">
+                <div class="bg-white p-4 rounded-lg w-full max-w-2xl">
                     <form wire:submit.prevent="{{ $modalAgregar ? 'crearUsuario' : 'actualizarUsuario' }}"
                         enctype="multipart/form-data">
-                        <legend class="text-2xl font-bold text-white text-center mb-2">
+                        <legend class="text-2xl font-bold text-gray-600 text-center mb-2">
                             {{ $modalAgregar ? 'Agregar Empleado' : 'Actualizar Empleado' }}</legend>
                         <div class="grid grid-cols-2 gap-2">
                             <div class="mb-2">
                                 @if ($modalAgregar)
                                     @if ($imagen)
-                                        <img src="{{ $imagen->temporaryUrl() }}" alt="Imagen previa"
+                                        <img loading="lazy" src="{{ $imagen->temporaryUrl() }}" alt="Imagen previa"
                                             class="object-cover mb-2 w-24" />
                                     @endif
-                                    <x-input-label class="text-white" for="imagen" :value="__('Imagen')" />
+                                    <x-input-label class="text-gray-500" for="imagen" :value="__('Imagen')" />
                                     <x-text-input wire:model="imagen" id="imagen"
                                         class="border-none text-xs p-0 block mt-1 w-full capitalize text-white"
                                         type="file" name="imagen" accept="image/*" />
                                     <x-input-error :messages="$errors->get('imagen')" class="mt-2" />
                                 @else
                                     @if ($imagen)
-                                        <img src="{{ asset('storage/uploads/imagenes_usuarios/' . $imagen) }}"
+                                        <img loading="lazy" src="{{ asset('storage/uploads/imagenes_usuarios/' . $imagen) }}"
                                             alt="Imagen previa" class="object-cover mb-2 w-24" />
                                     @endif
-                                    <x-input-label class="text-white" for="imagen" :value="__('Imagen')" />
+                                    <x-input-label class="text-gray-500" for="imagen" :value="__('Imagen')" />
                                     <x-text-input wire:model="imagen_nueva" id="imagen_nueva"
                                         class="border-none text-xs p-0 block mt-1 w-full capitalize text-white"
                                         type="file" name="imagen" accept="image/*" />
@@ -118,26 +120,26 @@
                             <div class="mb-2">
                             </div>
                             <div class="mb-2">
-                                <x-input-label class="text-white" for="numero_identificacion" :value="__('No. Identiifación')" />
-                                <x-text-input wire:model="numero_identificacion" id="numero_identificacion"
+                                <x-input-label class="hidden" for="numero_identificacion" :value="__('No. Identiifación')" />
+                                <x-text-input placeholder="Número de identificación" wire:model="numero_identificacion" id="numero_identificacion"
                                     class="block mt-1 w-full" type="text" name="numero_identificacion"
                                     autocomplete="numero_identificacion" />
                                 <x-input-error :messages="$errors->get('numero_identificacion')" class="mt-2" />
                             </div>
                             <div class="mb-2">
-                                <x-input-label class="text-white" for="name" :value="__('Nombre')" />
-                                <x-text-input wire:model="name" id="name" class="block mt-1 w-full capitalize"
+                                <x-input-label class="hidden" for="name" :value="__('Nombre')" />
+                                <x-text-input placeholder="Nombre Completo" wire:model="name" id="name" class="block mt-1 w-full capitalize"
                                     type="text" name="name" autocomplete="name" />
                                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
                             </div>
                             <div class="mb-2">
-                                <x-input-label class="text-white" for="email" :value="__('Correo')" />
-                                <x-text-input wire:model="email" id="email" class="block mt-1 w-full"
+                                <x-input-label class="hidden" for="email" :value="__('Correo')" />
+                                <x-text-input placeholder="Correo electrónico" wire:model="email" id="email" class="block mt-1 w-full"
                                     type="email" name="email" autocomplete="email" />
                                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
                             </div>
                             <div class="mb-2">
-                                <x-input-label class="text-white" for="rol" :value="__('Rol')" />
+                                <x-input-label class="hidden" for="rol" :value="__('Rol')" />
                                 <select wire:model="rol" id="rol" name="rol"
                                     class="p-1 ring-0 border-2 border-gray-200 transition-border focus:border-gray-100 focus:ring-0 block mt-1 w-full capitalize">
                                     <option selected>--- Rol ---</option>
@@ -147,14 +149,14 @@
                                 <x-input-error :messages="$errors->get('rol')" class="mt-2" />
                             </div>
                             <div class="mb-2">
-                                <x-input-label class="text-white" for="usuario" :value="__('Nombre Usuario')" />
-                                <x-text-input wire:model="usuario" id="usuario"
+                                <x-input-label class="hidden" for="usuario" :value="__('Nombre Usuario')" />
+                                <x-text-input placeholder="Nombre de usuario" wire:model="usuario" id="usuario"
                                     class="block mt-1 w-full capitalize" type="text" name="usuario"
                                     autocomplete="usuario" />
                                 <x-input-error :messages="$errors->get('usuario')" class="mt-2" />
                             </div>
                             <div class="mb-2">
-                                <x-input-label class="text-white" for="estado" :value="__('Estado')" />
+                                <x-input-label class="hidden" for="estado" :value="__('Estado')" />
                                 <select wire:model="estado" id="estado" name="estado"
                                     class="p-1 ring-0 border-2 border-gray-200 transition-border focus:border-gray-100 focus:ring-0 block mt-1 w-full capitalize">
                                     <option selected>--- Estado ---</option>
@@ -164,29 +166,29 @@
                                 <x-input-error :messages="$errors->get('estado')" class="mt-2" />
                             </div>
                             <div class="mb-2">
-                                <x-input-label class="text-white" for="password" :value="__('Contraseña')" />
-                                <x-text-input wire:model="password" id="password" class="block mt-1 w-full"
+                                <x-input-label class="hidden" for="password" :value="__('Contraseña')" />
+                                <x-text-input placeholder="Contraseña" wire:model="password" id="password" class="block mt-1 w-full"
                                     type="password" name="password" autocomplete="password" />
                                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
                             </div>
                             <div class="mb-2">
-                                <x-input-label class="text-white" for="password_confirmation" :value="__('Confirmar Contraseña')" />
-                                <x-text-input wire:model="password_confirmation" id="password_confirmation"
+                                <x-input-label class="hidden" for="password_confirmation" :value="__('Confirmar Contraseña')" />
+                                <x-text-input placeholder="Confirmar contraseña" wire:model="password_confirmation" id="password_confirmation"
                                     class="block mt-1 w-full" type="password" name="password_confirmation"
                                     autocomplete="password_confirmation" />
                                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                             </div>
                         </div>
                         <div class="col-span-2 mt-4">
-                            <button type="submit" wire:loading.attr="disabled"
-                                class="px-4 bg-blue-700 text-white rounded-md hover:bg-blue-800">
+                            <x-secondary-button type="submit" wire:loading.attr="disabled"
+                                class="px-4 text-indigo-800 hover:bg-indigo-800 hover:text-white border-indigo-800">
                                 {{ $modalAgregar ? 'Agregar' : 'Guardar' }}
-                            </button>
-                            <button
+                            </x-secondary-button>
+                            <x-secondary-button
                                 wire:click.prevent="{{ $modalAgregar ? 'cerrarModalAgregar' : 'cerrarModalEditar' }}"
-                                class="px-4 bg-gray-700 text-white rounded-md hover:bg-gray-800">
+                                class="px-4 hover:bg-gray-600 hover:text-white border-gray-600 text-gray-600">
                                 Cancelar
-                            </button>
+                            </x-secondary-button>
                         </div>
                 </div>
                 </form>
@@ -247,18 +249,18 @@
                 });
             });
 
-             let usuarios = document.querySelectorAll(".usuarioId");
+            let usuarios = document.querySelectorAll(".usuarioId");
 
-             usuarios.forEach(usuario => {
-                 console.log(usuario)
-                 usuario.addEventListener("dblclick", e => {
-                     e.preventDefault();
-                     let usuarioId = e.currentTarget.getAttribute('wire:key');
-                     Livewire.dispatch("abrirModalEditar", {
-                         id: usuarioId
-                     });
-                 });
-             });
+            usuarios.forEach(usuario => {
+                console.log(usuario)
+                usuario.addEventListener("dblclick", e => {
+                    e.preventDefault();
+                    let usuarioId = e.currentTarget.getAttribute('wire:key');
+                    Livewire.dispatch("abrirModalEditar", {
+                        id: usuarioId
+                    });
+                });
+            });
         });
     </script>
 @endpush

@@ -87,13 +87,14 @@ class ProductoController extends Component
         // Cargar los datos del producto para editar
         $producto = Producto::find($id);
 
+        
         // Verifica que el producto existe antes de intentar llenar los campos
         if ($producto) {
             // Llenar los campos del formulario con los detalles del producto
             $this->producto_id = $producto->id;
             $this->nombre = $producto->nombre;
             $this->codigo = $producto->codigo;
-            $this->precio = $producto->precio;
+            $this->precio = number_format($producto->precio, 2, '.', '');
             $this->stock = $producto->stock;
             $this->categoria_id = $producto->categoria_id;
             $this->proveedor_id = $producto->proveedor_id;
@@ -193,6 +194,8 @@ class ProductoController extends Component
             $productoActulizado->imagen = $nombreImagen;
         }
 
+        $this->precio = str_replace('.', '', $this->precio);
+
         // Actualizar el resto de los campos
         $productoActulizado->update([
             'nombre' => $this->nombre,
@@ -223,6 +226,15 @@ class ProductoController extends Component
     {
         $numero = number_format($numero, 0, ',', '.');
         return $numero;
+    }
+
+    public function updatedPrecio($value)
+    {
+        // Eliminar cualquier carácter no numérico, excepto comas y puntos
+        $numericValue = preg_replace('/[^\d]/', '', $value);
+
+        // Formatear el número con puntos como separadores de miles
+        $this->precio = number_format($numericValue, 0, '', '.');
     }
 
     #[On('eliminarProducto')]

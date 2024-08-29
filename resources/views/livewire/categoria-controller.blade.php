@@ -1,5 +1,5 @@
 <div class="p-4 relative" wire:keydown.window='teclaPresionada($event.key)'>
-    <h2 class="text-4xl text-center font-black mb-2">Categorías</h2>
+    <h2 class="text-4xl text-center font-black text-gray-600  mb-2">Categorías</h2>
 
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-md">
         <div class="flex flex-col md:flex-row my-2">

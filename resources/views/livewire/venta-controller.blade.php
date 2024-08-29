@@ -1,7 +1,6 @@
 <div class="md:p-6 relative pb-40" wire:keydown.window='teclaPresionada($event.key)'>
     @if ($modalRecibo)
-        <div wire:transition.opacity.duration.400ms
-            class="transition-all ease-in fixed z-50 bg-[rgba(0,0,0,0.5)] top-0 left-0 w-full p-2 h-screen overflow-y-scroll backdrop-blur-sm">
+        <div class="transition-all ease-in fixed z-50 bg-[rgba(0,0,0,0.5)] top-0 left-0 w-full p-2 h-screen overflow-y-scroll backdrop-blur-sm">
             <div class="flex items-center justify-center min-h-screen">
                 <div class="bg-gray-950 p-4 rounded-lg w-full max-w-2xl">
                     <h1 class="text-4xl text-center text-indigo-800">Recibo de Venta</h1>
@@ -62,8 +61,7 @@
     @endif
 
     @if ($modalClientes)
-        <div wire:transition.opacity.duration.400ms
-            class="transition-all ease-in fixed z-50 bg-[rgba(0,0,0,0.5)] top-0 left-0 w-full p-2 h-screen overflow-y-scroll backdrop-blur-sm">
+        <div class="transition-all ease-in fixed z-50 bg-[rgba(0,0,0,0.5)] top-0 left-0 w-full p-2 h-screen overflow-y-scroll backdrop-blur-sm">
             <div class="flex items-center justify-center min-h-screen">
                 <div class="bg-gray-950 p-4 rounded-lg w-full max-w-2xl">
 
@@ -118,7 +116,7 @@
     @endif
 
     @if ($modalVentas)
-        <div wire:transition.opacity.duration.400ms
+        <div
             class="transition-all ease-in fixed z-50 bg-[rgba(0,0,0,0.5)] top-0 left-0 w-full p-2 h-screen overflow-y-scroll backdrop-blur-sm">
             <div class="flex items-center justify-center min-h-screen">
                 <div class="bg-gray-950 p-4 rounded-lg w-full max-w-2xl">
@@ -178,7 +176,7 @@
         </div>
     @endif
 
-    <h2 class="text-4xl text-center mb-2 font-black">Modulo POS</h2>
+    <h2 class="text-4xl text-center mb-2 font-black text-gray-600 ">Modulo POS</h2>
 
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-md min-h-96">
         <div class="fixed bottom-0 left-0 shadow bg-indigo-100 w-full p-4 grid grid-cols-2 gap-4 md:grid-cols-4 z-20">
@@ -195,9 +193,9 @@
                     <span>
                         $
                     </span>
-                    <input wire:model="recibido" wire:keydown.enter='calcularCambio' type="number" id="recibido"
-                        name="recibido" min="0"
-                        class=" border-none focus:ring-0 bg-transparent no-spin-buttons p-0 text-2xl md:text-5xl  overflow-hidden w-full" />
+                    <input wire:model="recibido" wire:keydown.enter='calcularCambio' type="text" id="recibido"
+                        name="recibido" min="0" placeholder="0"
+                        class=" border-none focus:ring-0 bg-transparent no-spin-buttons p-0 text-2xl md:text-5xl  overflow-hidden w-full placeholder:text-green-800" />
                 </div>
             </div>
             <div class=" flex flex-col">
@@ -234,11 +232,13 @@
                                 @if (count($productos) === 0)
                                     <p class="text-center text-2xl">No se han encontrado productos</p>
                                 @else
-                                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 p-2">
+                                    <div
+                                        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 p-2">
                                         @foreach ($productos as $producto)
                                             <div wire:key='{{ $producto->id }}'
                                                 class="shadow-md relative flex flex-col items-center gap-2">
-                                                <img src="{{ asset('storage/uploads/imagenes_productos/' . $producto->imagen) }}"
+                                                <img loading="lazy"
+                                                    src="{{ asset('storage/uploads/imagenes_productos/' . $producto->imagen) }}"
                                                     alt="Imagen del usuario" class="object-cover my-2 h-24 px-2">
 
                                                 <div class="p-2 text-center">
@@ -252,7 +252,7 @@
                                                     <input id="producto-cantidad"
                                                         class="max-w-14 p-1 m-0 bg-transparent border-gray-200 focus:ring-0 focus:outline-none focus:border-gray-100"
                                                         type="number" wire:model="cantidad.{{ $producto->id }}"
-                                                        min="1"
+                                                        min="1" value="1"
                                                         wire:keydown.enter="agregarProductoCarrito({{ $producto }})">
                                                     <button
                                                         class="text-2xl px-2 transition-all text-green-800 hover:scale-105 hover:text-green-600 hover:cursor-pointer"

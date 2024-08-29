@@ -1,5 +1,5 @@
 <div class="p-4 relative" wire:keydown.window='teclaPresionada($event.key)'>
-    <h2 class="text-4xl text-center mb-2 font-black">Proveedores</h2>
+    <h2 class="text-4xl text-center mb-2 font-black text-gray-600 ">Proveedores</h2>
 
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-md">
         <div class="flex flex-col md:flex-row my-2">
@@ -80,27 +80,27 @@
             <div wire:transition.opacity.duration.400ms
                 class="transition-all ease-in fixed bg-[rgba(0,0,0,0.5)] backdrop-blur top-0 left-0 w-full p-2 z-50 h-screen overflow-y-scroll">
                 <div class="flex items-center justify-center min-h-screen">
-                    <div class="bg-gray-950 p-4 rounded-lg w-full max-w-2xl">
+                    <div class="bg-white p-4 rounded-lg w-full max-w-2xl">
                         <!-- Contenido del modal para agregar categoria -->
-                        <form wire:submit.prevent="crearProveedor" enctype="multipart/form-data">
-                            <legend class="text-2xl font-bold text-white text-center mb-2">Nuevo Proveedor</legend>
+                        <form wire:submit.prevent="{{ $modalAgregar ? 'crearProveedor' : 'actualizarProveedor' }}" enctype="multipart/form-data">
+                            <legend class="text-2xl font-bold text-gray-600 text-center mb-2">Nuevo Proveedor</legend>
                             <div class="grid grid-cols-2 gap-2">
                                 <div class="mb-2">
                                     <x-input-label for="nombre" :value="__('Nombre')" />
-                                    <x-text-input wire:model="nombre" id="nombre"
+                                    <x-text-input placeholder="Nombre completo" wire:model="nombre" id="nombre"
                                         class="block mt-1 w-full capitalize" type="text" name="nombre"
                                         autocomplete="nombre" />
                                     <x-input-error :messages="$errors->get('nombre')" class="mt-2" />
                                 </div>
                                 <div class="mb-2">
                                     <x-input-label for="email" :value="__('Email')" />
-                                    <x-text-input wire:model="email" id="email" class="block mt-1 w-full capitalize"
+                                    <x-text-input placeholder="Correo electrónico" wire:model="email" id="email" class="block mt-1 w-full capitalize"
                                         type="email" name="email" autocomplete="email" />
                                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                 </div>
                                 <div class="mb-2">
                                     <x-input-label for="celular" :value="__('Celular')" />
-                                    <x-text-input wire:model="celular" id="celular"
+                                    <x-text-input placeholder="Número de contacto" wire:model="celular" id="celular"
                                         class="block mt-1 w-full capitalize" type="tel" name="celular"
                                         autocomplete="celular" />
                                     <x-input-error :messages="$errors->get('celular')" class="mt-2" />
@@ -116,14 +116,15 @@
                                 </div>
                             </div>
                             <div class="mt-4">
-                                <button type="submit" wire:loading.attr="disabled"
-                                    class="px-4 bg-blue-700 text-white rounded-md hover:bg-blue-800">
-                                    Agregar
-                                </button>
-                                <button wire:click.prevent="cerrarModalAgregar"
-                                    class="px-4 bg-gray-700 text-white rounded-md hover:bg-gray-800">
-                                    Cancelar
-                                </button>
+                                <x-secondary-button type="submit" wire:loading.attr="disabled"
+                                class="px-4 text-indigo-800 hover:bg-indigo-800 hover:text-white border-indigo-800">
+                                {{ $modalAgregar ? 'Agregar' : 'Guardar' }}
+                            </x-secondary-button>
+                            <x-secondary-button
+                                wire:click.prevent="{{ $modalAgregar ? 'cerrarModalAgregar' : 'cerrarModalEditar' }}"
+                                class="px-4 hover:bg-gray-600 hover:text-white border-gray-600 text-gray-600">
+                                Cancelar
+                            </x-secondary-button>
                             </div>
                         </form>
                     </div>

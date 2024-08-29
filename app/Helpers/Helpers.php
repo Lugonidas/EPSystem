@@ -8,6 +8,4 @@ class Helpers
     {
         return number_format($numero, 0, ',', '.');
     }
-
-    
 }

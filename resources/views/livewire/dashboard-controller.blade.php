@@ -1,30 +1,30 @@
 <div class="md:p-6">
-    <h2 class="text-4xl text-center font-black mb-2">Dashboard</h2>
+    <h2 class="text-4xl text-center font-black text-gray-600 mb-2">Dashboard</h2>
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-md dark:border-gray-700">
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
             <div
-                class="shadow-md flex flex-col p-2 items-center  justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
+                class="shadow-md flex flex-col p-2 items-center  justify-center h-24 rounded dark:bg-gray-800">
                 <p class="font-bold">Última venta <i class="fa-solid fa-chart-simple text-indigo-800"></i></p>
                 <p class=" text-xl sm:text-4xl font-bold text-indigo-800">
                     $ {{ $this->formatearDinero($totalUltimaVenta) }}
                 </p>
             </div>
             <div
-                class="shadow-md flex flex-col p-2 items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
+                class="shadow-md flex flex-col p-2 items-center justify-center h-24 rounded dark:bg-gray-800">
                 <p class="font-bold">Venta Diaria <i class="fa-solid fa-chart-simple text-green-800"></i></p>
                 <p class=" text-xl sm:text-4xl font-bold text-indigo-800">
                     $ {{ $this->formatearDinero($totalVentasDelDia) }}
                 </p>
             </div>
             <div
-                class="shadow-md flex flex-col p-2 items-center justify-center h-24 rounded bg-gray-50 dark:bg-yellow-400-800">
+                class="shadow-md flex flex-col p-2 items-center justify-center h-24 rounded dark:bg-yellow-400-800">
                 <p class="font-bold">Venta Semanal <i class="fa-solid fa-chart-simple text-yellow-400"></i></p>
                 <p class=" text-xl sm:text-4xl font-bold text-indigo-800">
                     $ {{ $this->formatearDinero($totalVentasDeLaSemana) }}
                 </p>
             </div>
             <div
-                class="shadow-md flex flex-col p-2 items-center justify-center h-24 rounded bg-gray-50 dark:bg-yellow-400-800">
+                class="shadow-md flex flex-col p-2 items-center justify-center h-24 rounded dark:bg-yellow-400-800">
                 <p class="font-bold">Venta Mensual <i class="fa-solid fa-chart-simple text-yellow-400"></i></p>
                 <p class=" text-xl sm:text-4xl font-bold text-indigo-800">
                     $ {{ $this->formatearDinero($this->totalVentasDelMes) }}

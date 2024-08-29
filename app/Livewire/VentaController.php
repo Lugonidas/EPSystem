@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Helpers\Helpers;
 use App\Models\Cliente;
 use App\Models\Producto;
 use App\Models\ProductoVenta;
@@ -77,6 +78,8 @@ class VentaController extends Component
             $this->dispatch("errorRecibido");
             return;
         }
+
+        var_dump($this->recibido);
 
         // Validación: El dinero recibido debe ser igual o mayor al total
         if ($this->recibido < $this->total) {
@@ -355,7 +358,6 @@ class VentaController extends Component
         $this->recibido = 0.0;
 
         $this->dispatch("enviarAMemoria");
-
     }
 
     public function recuperarVentaDeMemoria()
@@ -605,8 +607,15 @@ class VentaController extends Component
 
         $this->carrito = $this->carrito->sortBy('id');
 
+        // Calcula el total de la venta
         $this->total = $this->calcularTotal();
+
+        // Solo actualiza el valor de recibido si no ha sido modificado por el usuario
+
+        $this->recibido = Helpers::formatearDinero($this->total);
     }
+
+
 
     private function calcularTotal()
     {

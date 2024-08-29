@@ -1,6 +1,6 @@
 <div class="md:p-6 relative">
 
-    <h2 class="text-4xl text-center font-black mb-2">Ventas</h2>
+    <h2 class="text-4xl text-center font-black mb-2 text-gray-600 ">Ventas</h2>
 
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-md dark:border-gray-700">
         <div class="flex flex-col md:flex-row md:gap-4 my-2">
