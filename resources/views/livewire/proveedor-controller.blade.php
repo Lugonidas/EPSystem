@@ -197,7 +197,6 @@
             let proveedores = document.querySelectorAll(".proveedorId");
 
             proveedores.forEach(proveedor => {
-                console.log(proveedor)
                 proveedor.addEventListener("dblclick", e => {
                     e.preventDefault();
                     let proveedorId = e.currentTarget.getAttribute('wire:key');

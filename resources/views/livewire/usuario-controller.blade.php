@@ -252,7 +252,6 @@
             let usuarios = document.querySelectorAll(".usuarioId");
 
             usuarios.forEach(usuario => {
-                console.log(usuario)
                 usuario.addEventListener("dblclick", e => {
                     e.preventDefault();
                     let usuarioId = e.currentTarget.getAttribute('wire:key');

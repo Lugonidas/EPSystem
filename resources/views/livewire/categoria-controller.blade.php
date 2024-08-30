@@ -183,7 +183,6 @@
 
 
             categorias.forEach(categoria => {
-                console.log(categoria)
                 categoria.addEventListener("dblclick", e => {
                     e.preventDefault();
                     let categoriaId = e.currentTarget.getAttribute('wire:key');

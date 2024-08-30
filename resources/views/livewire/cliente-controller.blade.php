@@ -223,7 +223,6 @@
             let clientes = document.querySelectorAll(".clienteId");
 
             clientes.forEach(cliente => {
-                console.log(cliente)
                 cliente.addEventListener("dblclick", e => {
                     e.preventDefault();
                     let clienteId = e.currentTarget.getAttribute('wire:key');
