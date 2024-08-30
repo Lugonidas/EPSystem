@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="description" content="EPSystem es un avanzado Sistema POS diseñado para optimizar y gestionar eficientemente tus ventas y operaciones comerciales. Con características innovadoras, soporte técnico confiable y una interfaz intuitiva, EPSystem te ofrece una solución completa para llevar tu negocio al siguiente nivel. Descubre cómo nuestra tecnología puede transformar tu punto de venta hoy mismo.">
+    <meta name="description"
+        content="EPSystem es un avanzado Sistema POS diseñado para optimizar y gestionar eficientemente tus ventas y operaciones comerciales. Con características innovadoras, soporte técnico confiable y una interfaz intuitiva, EPSystem te ofrece una solución completa para llevar tu negocio al siguiente nivel. Descubre cómo nuestra tecnología puede transformar tu punto de venta hoy mismo.">
 
     <title>{{ config('app.name', 'EPSystem') }}</title>
 
@@ -18,11 +19,10 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
-    @livewireStyles
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
@@ -45,8 +45,6 @@
         </main>
 
     </div>
-
-    @livewireScripts
 
     @stack('scripts')
 </body>
