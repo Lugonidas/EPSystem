@@ -31,7 +31,7 @@ new class extends Component {
 
                 <!-- Navigation Links -->
                 <div class="hidden w-full lg:flex lg:justify-center">
-                    @if (auth()->user()->rol === 1)
+                    @if (auth()->user()->rol == 1)
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             <i class="fa-solid fa-chart-pie "></i>
                             {{ __('Dashboard') }}

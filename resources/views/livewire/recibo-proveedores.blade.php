@@ -17,7 +17,7 @@
                         <td class="border px-4 py-2 capitalize">{{ $proveedor->email }}</td>
                         <td class="border px-4 py-2 capitalize">{{ $proveedor->celular }}</td>
                         <td class="border px-4 py-2 capitalize">
-                            {{ $proveedor->estado === 1 ? 'Activo' : 'Inactivo' }}
+                            {{ $proveedor->estado == 1 ? 'Activo' : 'Inactivo' }}
                         </td>
                     </tr>
                 @endforeach

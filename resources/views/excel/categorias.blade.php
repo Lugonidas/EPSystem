@@ -22,7 +22,7 @@
                     <tr class="text-center" wire:key='{{ $categoria->id }}'>
                         <td class="border px-4 capitalize">{{ $categoria->nombre}}</td>
                         <td class="border px-4 capitalize">
-                            {{ $categoria->estado === 1 ? 'Activo' : 'Inactivo' }}
+                            {{ $categoria->estado == 1 ? 'Activo' : 'Inactivo' }}
                         </td>
                     </tr>
                 @endforeach

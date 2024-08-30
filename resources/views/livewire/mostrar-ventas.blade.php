@@ -37,7 +37,7 @@
 
         </div>
 
-        @if (count($ventas) === 0)
+        @if (count($ventas) == 0)
             <p class="text-2xl text-center font-bold">Aún no has creado productos</p>
         @else
             <!-- Lista de productos -->

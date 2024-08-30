@@ -24,7 +24,7 @@
                 autofocus class="border-none focus:ring-0 p-2 w-full bg-transparent">
         </div>
 
-        @if (count($proveedores) === 0)
+        @if (count($proveedores) == 0)
             <p class="text-2xl text-center font-bold">Aún no has agreado proveedores.</p>
         @else
             <!-- Lista de usuarios -->
@@ -49,9 +49,9 @@
                                 <td class="border px-4 capitalize">
                                     <button wire:click.prevent="cambiarEstado({{ $proveedor->id }})"
                                         class="focus:outline-none text-2xl"
-                                        title="{{ $proveedor->estado === 1 ? 'Desactivar' : 'Activar' }}">
+                                        title="{{ $proveedor->estado == 1 ? 'Desactivar' : 'Activar' }}">
                                         <i
-                                            class="fa-solid {{ $proveedor->estado === 1 ? 'fa-check text-green-500' : 'fa-xmark text-red-500' }}"></i>
+                                            class="fa-solid {{ $proveedor->estado == 1 ? 'fa-check text-green-500' : 'fa-xmark text-red-500' }}"></i>
                                     </button>
                                 </td>
                                 <td class="border px-4 flex items-center justify-center w-full">

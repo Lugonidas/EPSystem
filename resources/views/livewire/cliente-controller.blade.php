@@ -24,7 +24,7 @@
                 autofocus class="border-none focus:ring-0 p-2 w-full bg-transparent">
         </div>
 
-        @if (count($clientes) === 0)
+        @if (count($clientes) == 0)
             <p class="text-2xl text-center font-bold">Aún no has agregado clientes</p>
         @else
             <!-- Lista de clientes -->

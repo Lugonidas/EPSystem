@@ -70,9 +70,9 @@
                                 <td class="border px-4">
                                     <button wire:click.prevent="cambiarEstado({{ $producto->id }})"
                                         class="focus:outline-none text-2xl"
-                                        title="{{ $producto->estado === 1 ? 'Desactivar' : 'Activar' }}">
+                                        title="{{ $producto->estado == 1 ? 'Desactivar' : 'Activar' }}">
                                         <i
-                                            class="fa-solid {{ $producto->estado === 1 ? 'fa-check text-green-500' : 'fa-xmark text-red-500' }}"></i>
+                                            class="fa-solid {{ $producto->estado == 1 ? 'fa-check text-green-500' : 'fa-xmark text-red-500' }}"></i>
                                     </button>
                                 </td>
                                 <td class="border px-4">

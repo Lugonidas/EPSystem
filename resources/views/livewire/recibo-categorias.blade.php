@@ -13,7 +13,7 @@
                     <tr class="text-center hover:bg-gray-400" wire:key='{{ $categoria->id }}'>
                         <td class="border px-4 py-2 capitalize">{{ $categoria->nombre }}</td>
                         <td class="border px-4 py-2 capitalize">
-                            {{ $categoria->estado === 1 ? 'Activo' : 'Inactivo' }}
+                            {{ $categoria->estado == 1 ? 'Activo' : 'Inactivo' }}
                         </td>
                     </tr>
                 @endforeach

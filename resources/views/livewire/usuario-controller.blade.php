@@ -50,13 +50,13 @@
                                 </td>
                                 <td class="border px-4 capitalize">{{ $usuario->usuario }}</td>
 
-                                <td class="border px-4 capitalize">{{ $usuario->rol === 1 ? 'Admin' : 'Cajero' }}</td>
+                                <td class="border px-4 capitalize">{{ $usuario->rol == 1 ? 'Admin' : 'Cajero' }}</td>
                                 <td class="border px-4">
                                     <button wire:click.prevent="cambiarEstado({{ $usuario->id }})"
                                         class="focus:outline-none text-2xl"
-                                        title="{{ $usuario->estado === 1 ? 'Desactivar' : 'Activar' }}">
+                                        title="{{ $usuario->estado == 1 ? 'Desactivar' : 'Activar' }}">
                                         <i
-                                            class="fa-solid {{ $usuario->estado === 1 ? 'fa-check text-green-500' : 'fa-xmark text-red-500' }}"></i>
+                                            class="fa-solid {{ $usuario->estado == 1 ? 'fa-check text-green-500' : 'fa-xmark text-red-500' }}"></i>
                                     </button>
                                 </td>
                                 <td class="border px-4">

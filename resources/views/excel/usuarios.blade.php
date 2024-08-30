@@ -28,8 +28,8 @@
                         <td class="border px-4 capitalize">{{ $usuario->numero_identificacion }}</td>
                         <td class="border px-4 capitalize">{{ $usuario->usuario }}</td>
                         <td class="border px-4 capitalize">{{ $usuario->email }}</td>
-                        <td class="border px-4 capitalize">{{ $usuario->estado === 1 ? 'Activo' : 'Inactivo' }}</td>
-                        <td class="border px-4 capitalize">{{ $usuario->rol === 1 ? 'Admin' : 'Cajero' }}</td>
+                        <td class="border px-4 capitalize">{{ $usuario->estado == 1 ? 'Activo' : 'Inactivo' }}</td>
+                        <td class="border px-4 capitalize">{{ $usuario->rol == 1 ? 'Admin' : 'Cajero' }}</td>
                     </tr>
                 @endforeach
             </tbody>

@@ -77,7 +77,7 @@
                     <h2 class="text-4xl text-center mb-2 text-white my-4">Lista Clientes</h2>
 
                     <div class="overflow-x-auto">
-                        @if (count($clientes) === 0)
+                        @if (count($clientes) == 0)
                             <p class="text-center text-2xl text-white">No se han encontrado clientes</p>
                         @else
                             <!-- Lista de productos -->
@@ -133,7 +133,7 @@
                     <h2 class="text-4xl text-center mb-2 text-white my-4">Lista Ventas</h2>
 
                     <div class="overflow-x-auto overflow-hidden">
-                        @if (count($ventas) === 0)
+                        @if (count($ventas) == 0)
                             <p class="text-center text-2xl text-white">No se han encontrado clientes</p>
                         @else
                             <!-- Lista de productos -->
@@ -229,7 +229,7 @@
                                 {{ 'Listado Productos' }}
                             </h2>
                             <div class="overflow-x-auto">
-                                @if (count($productos) === 0)
+                                @if (count($productos) == 0)
                                     <p class="text-center text-2xl">No se han encontrado productos</p>
                                 @else
                                     <div
@@ -336,7 +336,7 @@
         </div>
 
 
-        @if (count($carrito) === 0)
+        @if (count($carrito) == 0)
             <div class="text-center p-4">
                 <i class="fa-solid fa-cart-shopping text-6xl text-indigo-600"></i>
                 <p class="text-center text-md md:text-4xl font-bold">¡Aún no has agregado productos al carrito!</p>

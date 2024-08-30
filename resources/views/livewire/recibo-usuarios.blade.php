@@ -20,8 +20,8 @@
                         <td class="border px-4 py-2 capitalize">{{ $usuario->usuario }}</td>
                         <td class="border px-4 py-2 capitalize">{{ $usuario->email }}</td>
                         <td class="border px-4 py-2 capitalize">
-                            {{ $usuario->estado === 1 ? 'Activo' : 'No Activo' }}</td>
-                        <td class="border px-4 py-2 capitalize">{{ $usuario->rol === 1 ? 'Admin' : 'Cajero' }}</td>
+                            {{ $usuario->estado == 1 ? 'Activo' : 'No Activo' }}</td>
+                        <td class="border px-4 py-2 capitalize">{{ $usuario->rol == 1 ? 'Admin' : 'Cajero' }}</td>
                         </td>
                     </tr>
                 @endforeach
