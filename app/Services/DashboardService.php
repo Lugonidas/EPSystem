@@ -72,9 +72,9 @@ class DashboardService
 
     public function clientesQueMasCompran(): Collection
     {
-        return Cliente::select('clientes.*', DB::raw('COUNT(ventas.id) as total_compras'))
-            ->join('ventas', 'clientes.id', '=', 'ventas.cliente_id')
-            ->groupBy('clientes.id')
+        return Cliente::select('clientes.id', 'clientes.nombre', 'clientes.direccion', DB::raw('COUNT(ventas.id) as total_compras'))
+            ->leftJoin('ventas', 'clientes.id', '=', 'ventas.cliente_id')
+            ->groupBy('clientes.id', 'clientes.nombre', 'clientes.direccion')
             ->orderByDesc('total_compras')
             ->limit(3)
             ->get();
