@@ -8,10 +8,11 @@
 
     <title>{{ config('app.name', 'EPSystem') }}</title>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+    @livewireStyles
 </head>
 
 <body class="font-sans text-gray-900 antialiased backdrop-blur-sm"
@@ -29,6 +30,8 @@
         </div>
 
     </div>
+
+    @livewireScripts
 </body>
 
 </html>
