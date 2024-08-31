@@ -154,7 +154,7 @@
                                 </div>
                                 <div class="mb-2">
                                     <x-input-label class="hidden" for="precio" :value="__('Precio')" />
-                                    <x-text-input placeholder="Precio" wire:model.live="precio" id="precio"
+                                    <x-text-input placeholder="Precio" wire:model.lazy="precio" id="precio"
                                         class="block mt-1 w-full" type="text" name="precio" 
                                         autocomplete="precio" />
                                     <x-input-error :messages="$errors->get('precio')" class="mt-2" />

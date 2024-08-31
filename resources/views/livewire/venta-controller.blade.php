@@ -252,7 +252,7 @@
                                                     <input id="producto-cantidad"
                                                         class="max-w-14 p-1 m-0 bg-transparent border-gray-200 focus:ring-0 focus:outline-none focus:border-gray-100"
                                                         type="number" wire:model="cantidad.{{ $producto->id }}"
-                                                        min="1" value="1"
+                                                        min="1" max="999999999" value=""
                                                         wire:keydown.enter="agregarProductoCarrito({{ $producto }})">
                                                     <button
                                                         class="text-2xl px-2 transition-all text-green-800 hover:scale-105 hover:text-green-600 hover:cursor-pointer"
@@ -369,7 +369,7 @@
                                     <input wire:keydown.enter='actualizarCantidad({{ $producto->id }})'
                                         wire:model="carrito.{{ $producto->id }}.quantity"
                                         class="px-2 max-w-16 bg-transparent border-gray-200 focus:ring-0 focus:outline-none focus:border-gray-100"
-                                        type="number" min="1" />
+                                        type="number" min="1" max="999999999" value=""/>
                                     <button
                                         class="px-2 text-lg transition-all text-gray-800 hover:scale-105 hover:text-green-600 hover:cursor-pointer"
                                         wire:click.prevent="actualizarCantidad({{ $producto->id }})">

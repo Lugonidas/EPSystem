@@ -87,14 +87,17 @@ class ProductoController extends Component
         // Cargar los datos del producto para editar
         $producto = Producto::find($id);
 
-        
+
+
+
+
         // Verifica que el producto existe antes de intentar llenar los campos
         if ($producto) {
             // Llenar los campos del formulario con los detalles del producto
             $this->producto_id = $producto->id;
             $this->nombre = $producto->nombre;
             $this->codigo = $producto->codigo;
-            $this->precio = number_format($producto->precio, 2, '.', '');
+            $this->precio = $this->formatearDinero($producto["precio"]);
             $this->stock = $producto->stock;
             $this->categoria_id = $producto->categoria_id;
             $this->proveedor_id = $producto->proveedor_id;
@@ -228,7 +231,7 @@ class ProductoController extends Component
         return $numero;
     }
 
-    public function updatedPrecio($value)
+        public function updatedPrecio($value)
     {
         // Eliminar cualquier carácter no numérico, excepto comas y puntos
         $numericValue = preg_replace('/[^\d]/', '', $value);
@@ -268,7 +271,7 @@ class ProductoController extends Component
         $producto = Producto::find($id);
 
         if ($producto) {
-            $producto->estado = $producto->estado === 1 ? 0 : 1;
+            $producto->estado = $producto->estado == 1 ? 0 : 1;
             $producto->save();
 
             // Opcional: Emitir un evento o hacer algo después de cambiar el estado
@@ -288,7 +291,7 @@ class ProductoController extends Component
                 'max:10',
                 Rule::unique('productos', 'codigo')->ignore($this->producto_id),
             ],
-            'precio' => ['required', 'numeric', 'min:0'],
+            'precio' => ['required', 'numeric', 'min:0', 'max:999999999'],
             'stock' => ['required', 'integer', 'min:0'],
             'categoria_id' => ['required', 'numeric', 'exists:categorias,id'],
             'proveedor_id' => ['required', 'numeric', 'exists:proveedores,id'],
@@ -309,6 +312,7 @@ class ProductoController extends Component
             'precio.required' => 'El campo precio es obligatorio.',
             'precio.numeric' => 'El campo precio debe ser un valor numérico.',
             'precio.min' => 'El campo precio debe ser mayor o igual a 0.',
+            'precio.max' => 'El campo precio no debe exceder los 10 dígitos.',
 
             'stock.required' => 'El campo stock es obligatorio.',
             'stock.integer' => 'El campo stock debe ser un valor entero.',

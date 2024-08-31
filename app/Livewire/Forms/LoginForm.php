@@ -34,7 +34,7 @@ class LoginForm extends Form
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
+                'email' => __('auth.failed'),
             ]);
         }
 
@@ -55,7 +55,7 @@ class LoginForm extends Form
         $seconds = RateLimiter::availableIn($this->throttleKey());
 
         throw ValidationException::withMessages([
-            'email' => trans('auth.throttle', [
+            'email' => __('auth.throttle', [
                 'seconds' => $seconds,
                 'minutes' => ceil($seconds / 60),
             ]),
@@ -68,5 +68,17 @@ class LoginForm extends Form
     protected function throttleKey(): string
     {
         return Str::transliterate(Str::lower($this->email).'|'.request()->ip());
+    }
+
+    /**
+     * Custom validation error messages.
+     */
+    public function messages(): array
+    {
+        return [
+            'email.required' => 'Por favor, ingrese su dirección de correo electrónico.',
+            'email.email' => 'El formato del correo electrónico es incorrecto.',
+            'password.required' => 'La contraseña es obligatoria.',
+        ];
     }
 }
